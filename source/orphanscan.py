@@ -39,10 +39,10 @@ reportfile.write("<h1>Orphan report</h1>")
 #
 # Get the directory that contains the DITA files.
 #
-print "\nSpecify the full path of the directory to be scanned, for example, C:\jazz_repo\prodA\\\n"
-print "Do not forget the trailing slash\n"
+print ('\nSpecify the full path of the directory to be scanned, for example, C:\jazz_repo\prodA\\\n')
+print ('Do not forget the trailing slash\n')
 #
-workspace = raw_input("Enter the full path of directory to be scanned: ")
+workspace = input("Enter the full path of directory to be scanned: ")
 #
 reportfile.write('<p>Directory scanned: <a href = "file:///')
 reportfile.write(workspace)
@@ -58,16 +58,16 @@ counter = 0
 #
 # Print out the subfolders. Also, count them and print out the count.
 #
-print '\nReading the directory ...\n'
+print ('\nReading the directory ...\n')
 #
 try:
     for foldername in os.listdir(workspace):
         counter += 1
-        print foldername
+        print (foldername)
 except:
-    print 'The directory could not be found.\n'
+    print ('The directory could not be found.\n')
     exit()
-print '\nThe program will scan these', counter, 'folders in the', workspace, 'directory.\n'
+print ('\nThe program will scan these', counter, 'folders in the', workspace, 'directory.\n')
 #
 # Start a counter to count ALL files in the directory
 #
@@ -80,8 +80,8 @@ for (dirname, dirs, files) in os.walk(workspace):
     for filename in files:
         counter += 1
         bigfilelist.append(filename)
-        #print filename
-print '\n',counter, 'files in the directory.\n'
+        #print (filename)
+print ('\n',counter, 'files in the directory.\n')
 #
 # Start a counter for the number of .dita and .ditamap files in the directory
 # If file is a .dita or .ditamap file, create the full file path,
@@ -95,8 +95,8 @@ for (dirname, dirs, files) in os.walk(workspace):
             counter += 1
             thefile = os.path.join(dirname, filename)
             smallfilelist.append(thefile)
-            #print thefile
-print '\n',counter, 'content files (.dita and .ditamap).\n'
+            #print (thefile)
+print ('\n',counter, 'content files (.dita and .ditamap).\n')
 #
 # Traverse bigfilelist, check if list item exists in contents of file in smallfilelist
 # If not exists, list item is an orphan. Print it out.
@@ -108,14 +108,14 @@ reportfile.write('<ul>')
 filefound = 0
 for fname in bigfilelist:
     for contentfile in smallfilelist:
-        handle = open(contentfile)
+        handle = open(contentfile, 'r', encoding='ISO-8859-2')
         filecontent = handle.read()
         if fname in filecontent:
             filefound += 1 # if file is referenced, increment the counter
         handle.close()
     if filefound == 0:
         reportfile.write('<li>')
-        print fname # if counter is still zero, file isn't referenced by smallfilelist
+        print (fname) # if counter is still zero, file isn't referenced by smallfilelist
         reportfile.write(fname)
         reportfile.write('</li>')
     filefound = 0 #re-initialise the counter
@@ -123,7 +123,7 @@ for fname in bigfilelist:
 reportfile.write('</ul><hr\>')
 # print a completion message
 #
-print 'Finished scanning the directory.'
+print ('Finished scanning the directory.')
 #
 # Write the closing HTML tags in the report file.
 #
@@ -134,6 +134,6 @@ reportfile.close()
 # Wait for user input so that a person gets enough time to read whatever's been printed on the console
 # and then close the program
 #
-print "The program will now end."
-raw_input("Press any key to close.")
+print ("The program will now end.")
+input("Press any key to close.")
 exit()

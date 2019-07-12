@@ -2,26 +2,21 @@
 
 A script that scans all DITA files in a directory and reports those files that are not referenced by any other file DITA in that directory. Such a check is useful for identifying image files or content files that are not called by any of your DITA files.
 
-## Usage instructions
+## Usage scenario
 
-#### Prerequisite
+You have several image files, topic files, and other files in the directory but hesitate to delete them because you are not sure if any of these files are referenced by the DITA files in that directory. You tell the script which directory it should scan. The script runs the checks and gives you a report that you can read and act upon to clean up your workspace.
 
-Download and install Python 2.7.5. Later versions of Python should also work.
+## Documentation
 
-#### Steps
-
-1. Download this entire repository as a `.zip` file, extract the contents to any folder, and double-click `orphanscan.py`.
-2. When prompted, enter the full path of the directory to be scanned, for example, `c:\documentation\`. Do not forget to enter the trailing `\` for the directory. 
-3. When the checking is complete, you see a message on the console: `Press any key to exit.` Press any key. 
-4. Go to the folder that contains the script. You see a file called `orphanScan.html`. This is the report file for you to read and act upon.
-
+See [Anin's Documentation Tools](https://doc-tools.readthedocs.io/en/latest/).
+ 
 ## Limitations
 
-The script checks only `.dita` and `.ditamap` files. If your filenames have the `.xml`, `.html`, or `.xhtml` extension, this script will not work.
+It is assumed that all DITA topic files have the `.dita` extension. If your files use the `.xml` extension, this script will not work in its present form.
 
-## Bugs and enhancements
+## Acknowledgments
 
-Use GitHub's issue tracking feature.
+The code was converted from .py to .exe through [auto-py-to-exe](https://github.com/brentvollebregt/auto-py-to-exe).
 
 ## Licensing
 
